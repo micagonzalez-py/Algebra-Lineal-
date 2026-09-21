@@ -1,0 +1,84 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Recorrido interactivo de Álgebra Lineal con práctica y controles de 15 minutos.">
+  <title>Álgebra Lineal · Estudio activo</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23182938'/%3E%3Cpath d='M16 13v38M48 13v38M22 24h20M22 32h20M22 40h20' stroke='%236ed3c1' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Inicio">
+      <span class="brand-mark">A</span><span>Álgebra Lineal</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="#ruta">Ruta</a><a href="#laboratorio">Laboratorio</a><a href="#control">Control 15′</a>
+    </nav>
+    <div class="progress-pill" aria-label="Progreso"><span id="progressText">0/12</span><i><b id="progressBar"></b></i></div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">SECCIONES H · F / PRÁCTICA 2026</p>
+        <h1>Entendé la estructura.<br><em>Después calculá.</em></h1>
+        <p class="lead">Un recorrido por las clases del semestre para repasar ideas, probar intuiciones y detectar qué tema necesita otra vuelta.</p>
+        <div class="hero-actions"><a class="primary" href="#ruta">Continuar el recorrido <span>→</span></a><button class="secondary" id="randomQuiz">Control aleatorio de 15′</button></div>
+        <div class="next-up"><span>Próximo paso sugerido</span><strong id="nextTopic">Espacios y subespacios vectoriales</strong></div>
+      </div>
+      <div class="matrix-card" aria-label="Transformación matricial decorativa">
+        <div class="axis-grid"><div class="vector v1"></div><div class="vector v2"></div><span class="origin"></span></div>
+        <div class="matrix-equation"><span>A</span><b>[</b><code>1&nbsp; 2<br>0&nbsp; 1</code><b>]</b><small>transforma el plano,<br>no solo números.</small></div>
+      </div>
+    </section>
+
+    <section class="route section" id="ruta">
+      <div class="section-head"><div><p class="eyebrow">RUTA DEL SEMESTRE</p><h2>Doce estaciones, una sola historia</h2></div><p>Marcá un tema como dominado cuando puedas explicarlo sin mirar y resolver al menos un ejercicio representativo.</p></div>
+      <div class="filters" role="group" aria-label="Filtrar unidades">
+        <button class="filter active" data-filter="all">Todo</button><button class="filter" data-filter="fundamentos">Fundamentos</button><button class="filter" data-filter="aplicaciones">Aplicaciones</button><button class="filter" data-filter="geometria">Geometría</button><button class="filter" data-filter="espectral">Teoría espectral</button>
+      </div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </section>
+
+    <section class="lab section" id="laboratorio">
+      <div class="lab-copy">
+        <p class="eyebrow">LABORATORIO VISUAL</p><h2>Mové una matriz.<br>Observá el plano.</h2>
+        <p>Cambiá las entradas de una matriz (2\times2). Las columnas indican adónde van los vectores de la base canónica.</p>
+        <div class="matrix-inputs" aria-label="Entradas de matriz">
+          <input id="a" type="number" value="1" step="0.25" aria-label="a uno uno"><input id="b" type="number" value="1" step="0.25" aria-label="a uno dos">
+          <input id="c" type="number" value="0" step="0.25" aria-label="a dos uno"><input id="d" type="number" value="1" step="0.25" aria-label="a dos dos">
+        </div>
+        <div class="det-row"><span>det(A)</span><strong id="detValue">1</strong><small id="detMeaning">Transformación invertible</small></div>
+        <button class="secondary light" id="resetMatrix">Restablecer identidad</button>
+      </div>
+      <div class="canvas-wrap"><canvas id="matrixCanvas" width="650" height="480" aria-label="Plano transformado por la matriz"></canvas><div class="legend"><span><i class="teal"></i> Ae₁</span><span><i class="coral"></i> Ae₂</span></div></div>
+    </section>
+
+    <section class="quiz section" id="control">
+      <div class="section-head quiz-head"><div><p class="eyebrow">EVALUACIÓN FORMATIVA</p><h2>Control de 15 minutos</h2></div><p>Cuatro preguntas breves. Al terminar recibís diagnóstico por tema y una recomendación concreta de repaso.</p></div>
+      <div class="quiz-shell">
+        <aside>
+          <label for="quizTopic">Tema</label><select id="quizTopic"></select>
+          <div class="timer" id="timer"><span>15</span><small>MIN</small><b>:</b><span>00</span><small>SEG</small></div>
+          <button class="primary full" id="startQuiz">Comenzar control</button>
+          <p>El resultado queda guardado solo en este dispositivo.</p>
+        </aside>
+        <div class="quiz-stage" id="quizStage">
+          <div class="empty-quiz"><span>15′</span><h3>Elegí un tema y empezá cuando estés lista/o.</h3><p>La dificultad mezcla comprensión conceptual y cálculo corto.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="method section">
+      <p class="eyebrow">MÉTODO DE REPASO</p><h2>Una sesión que sí deja huella</h2>
+      <div class="method-grid"><article><span>01</span><h3>Recordá</h3><p>Escribí la definición y una propiedad sin consultar las notas.</p></article><article><span>02</span><h3>Contrastá</h3><p>Buscá un ejemplo y un contraejemplo. Explicá qué condición falla.</p></article><article><span>03</span><h3>Resolvé</h3><p>Hacé un ejercicio completo y justificá cada decisión, no solo la cuenta.</p></article><article><span>04</span><h3>Verificá</h3><p>Cerrá con el control de 15 minutos y anotá el error más útil.</p></article></div>
+    </section>
+  </main>
+
+  <footer><div><strong>Álgebra Lineal · Estudio activo</strong><p>Basado en las clases y ejercitarios del semestre 2026.</p></div><a href="https://drive.google.com/drive/folders/1V6FPz9--xtCbhxIulLOH2zQ1w92j7JmA" target="_blank" rel="noopener">Abrir carpeta de materiales ↗</a></footer>
+  <script src="app.js"></script>
+</body>
+</html>
